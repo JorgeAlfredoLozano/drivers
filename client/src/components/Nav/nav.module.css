@@ -1,0 +1,67 @@
+.buttonLink {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 5px;
+  text-align: center; /* Centra el texto horizontalmente */
+  line-height: 4px;
+}
+.buttonLink:hover {
+  transform: scale(1.05);
+}
+.buttonNew {
+  display: inline-block;
+  padding: 10px 1px;
+  background-color: #f1f1f1;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 5px;
+  width: 90px;;
+  text-align: center; /* Centra el texto horizontalmente */
+  line-height: 4px;
+  margin-right: 5px;
+}
+.buttonNew:hover {
+  transform: scale(1.05);
+}
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchContainer {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.select {
+  margin-left: 10px;
+  width: 85px;
+  color: #000000;
+}
+
+.selectTeam {
+  margin-left: 10px;
+  width: 85px;
+  color: #000000;
+}
+
+.selectOrigin {
+  margin-left: 10px;
+  width: 45px;
+  color: #000000;
+}
+.labelraya {
+  padding: 10px;
+  color: rgb(47, 170, 226);
+  font-weight: bold;
+}

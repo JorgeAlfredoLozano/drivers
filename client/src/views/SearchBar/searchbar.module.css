@@ -1,0 +1,36 @@
+.search-container {
+  margin-right: 10px;
+}
+.buttonLink {
+  display: inline-block;
+  padding: 10px 5px;
+  background-color: #f1f1f1;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 5px;
+  text-align: center; /* Centra el texto horizontalmente */
+  line-height: 4px;
+}
+
+.buttonLink:hover {
+  transform: scale(1.05);
+}
+
+.input {
+border-radius: 6px;
+height: 25px;
+width: 130px;
+}  
+
+.chekbox {
+  color: white;
+}
+
+.labelraya {
+  padding: 10px;
+  color: rgb(47, 170, 226);
+  font-weight: bold;
+}

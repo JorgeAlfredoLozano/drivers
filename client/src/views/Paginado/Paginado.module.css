@@ -1,0 +1,34 @@
+.paginado {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.paginado li {
+  margin: 0 10px;
+}
+
+.paginado button {
+  color: rgb(76, 148, 170);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.paginado button:focus {
+  outline: none;
+}
+
+.paginado .number.active button {
+  color: #fff;
+  background-color: #333;
+  border-radius: 50%;
+  padding: 5px 8px;
+}
+
+.paginado .disabled button {
+  color: #ffffff;
+  cursor: not-allowed;
+}

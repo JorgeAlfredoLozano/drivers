@@ -1,0 +1,31 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #95dada;
+  border: 1px solid grey;
+  border-radius: 35px;
+  padding: 25px;
+  cursor: pointer;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+  align-items: center; 
+  /* flex-start */
+}
+
+.card-container:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  width: 110px;
+  height: 110px;
+}
+
+.teams {
+  width: 180px;
+  
+  
+  
+}
