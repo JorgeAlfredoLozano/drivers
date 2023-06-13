@@ -3,13 +3,14 @@
 	height: 100vh;
   }
 .sidebar {
-    width: 25%;
+    width: 30%;
+	color: white;
     /* overflow-y: scroll; */
     /* background: #ffffff; */
-    direction: rtl; 
+    /* direction: rtl;  */
   }
 .main {
-	width: 75%;
+	width: 70%;
 	/* overflow-y: scroll; */
    
 	background-repeat: no-repeat;
@@ -29,13 +30,17 @@
 	background-position: 200% 0%;
 	background-repeat: no-repeat;
 	line-height: 0px;
+	
 }
 
 form label {
     font-weight: bold;
     display: inline-block;
-    vertical-align: middle;
-    min-width: 100px;
+    vertical-align: top;
+	margin-left: 1px;
+	margin-right: 4px;
+    margin-top: 20px;
+	min-width: 100px;
     text-align: right;
 	line-height: 0;
     font-family: Arial, sans-serif; 
@@ -45,12 +50,12 @@ form label {
 
 form input[type="text"] {
 	width: 200px;
-	
 	padding: 3px 10px;
 	border: 1px solid #f6f6f6;
 	border-radius: 3px;
 	background-color: #f6f6f6;
-	margin: 8px 0;
+	margin: 12px 0;
+	margin-right: -25px;
 	display: inline-block;
 	vertical-align: middle;
 	
@@ -61,7 +66,7 @@ form input[type="submit"]:hover {
 }
 
 .campoImagen img {
-    margin-top: 20px;
+    margin-top: 5px;
     width: 80%;
     border-radius: 8%;
     border: solid rgb(109, 109, 122) 6px;
@@ -90,7 +95,7 @@ form input[type="submit"]:hover {
 	position: relative;
   }
   
-  .message {
+.message {
 	background: white;
 	margin-left: 610px;
 	margin-top: -100px;
@@ -104,8 +109,22 @@ form input[type="submit"]:hover {
 	font-weight: bold;
 	display: flex;
 	align-items: center;
+}
+  
+.btnIcono {
+	width: 5px;
+	height: 20px;
+	display: inline-flex;
+	margin-left: 5px;
+	
+	align-items: center;
+	justify-content: center;
   }
   
+  .boton {
+	margin-top: 10px;
+	margin-right: 10px;
+  }
 
 
 
