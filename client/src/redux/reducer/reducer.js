@@ -67,7 +67,8 @@ const initialState = {
               ...state,
               filteredDrivers: [...state.allDrivers]
             }
-          case FILTER_ORIGIN:
+          
+            case FILTER_ORIGIN:
             const origin = action.payload;
             let filterxorigin = [...state.filteredDrivers];
           
@@ -79,7 +80,7 @@ const initialState = {
               filterxorigin = state.filteredDrivers.filter((driver) => 'createInDb' in driver);
             } 
           
-            console.log(filterxorigin);
+            
           
             if (!filterxorigin || filterxorigin.length === 0) {
               throw new Error("No drivers with this filter");

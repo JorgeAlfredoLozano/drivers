@@ -1,12 +1,12 @@
 import { all } from "axios";
 import Cards from "../Cards/cards";
-import "./cardList.styles.css";
+import styles from "./cardList.module.css";
 
 function CardList({drivers}) {
   const arrDrivers = drivers
 
   return (
-    <div className="card-list">
+    <div className={styles.card_list}>
       {arrDrivers?.map((driver, index) => (<Cards key={index} driver={driver} />))}
     </div>
   );

@@ -37,13 +37,13 @@ function SearchBar({ onSearch, isChecked, handleCheckboxChange }) { // Recibe el
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
-
+      
         <button
           disabled={true}
           className={styles['buttonLink']}
           onClick={handleSearch}
         >
-          <span role="img" aria-label="search">🔍</span>
+          <span  style={{marginLeft:"-10px"}} role="img" aria-label="search">🔍</span>
         </button>
 
         <label className={styles.chekbox} title="If enabled it searches all pilots, and ignores currently applied filters.">
@@ -55,7 +55,7 @@ function SearchBar({ onSearch, isChecked, handleCheckboxChange }) { // Recibe el
           All Drivers
         </label>
 
-        <label className={styles.labelraya}> | </label>
+        <label className={styles.labelraya2}> | </label>
       </form>
     </div>
   );

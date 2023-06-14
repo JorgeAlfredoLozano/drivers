@@ -5,7 +5,7 @@ const getDriverById = async (id) => {
     let driverById;
 
     if (isNaN(id)) {
-        driverById = await Driver.findByPk(id);
+        driverById = await Driver.findByPk(id, { include: Team });
         if (!driverById) { //no hay pilotos en la DB con es id
             throw new Error(`Driver with ID ${id} not found in the database`);
         }

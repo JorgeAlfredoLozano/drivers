@@ -1,17 +1,23 @@
 .search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra horizontalmente */
   margin-right: 10px;
+  margin-top: -15px;
 }
+
 .buttonLink {
   display: inline-block;
-  padding: 10px 5px;
+  margin-top: 11px;
+  margin-left: 5px;
   background-color: #f1f1f1;
   color: #333;
   text-decoration: none;
   border: 1px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
-  height: 5px;
-  text-align: center; /* Centra el texto horizontalmente */
+  width: 10px;
+  
   line-height: 4px;
 }
 
@@ -20,17 +26,22 @@
 }
 
 .input {
-border-radius: 6px;
-height: 25px;
-width: 130px;
-}  
+  border-radius: 6px;
+  height: 25px;
+  width: 130px;
+}
 
-.chekbox {
+.checkbox {
   color: white;
 }
 
 .labelraya {
-  padding: 10px;
-  color: rgb(47, 170, 226);
+  color: rgb(255, 3, 3);
   font-weight: bold;
+}
+.labelraya2 {
+  color: rgb(255, 3, 3);
+  font-weight: bold;
+  margin-left: -60px;
+  margin-top: 27px;
 }

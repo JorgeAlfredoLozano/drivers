@@ -7,12 +7,17 @@ export const validate = (newDriver) => {
     forename: "",
     surname: "",
     description: "",
-    image: "",
     nationality: "",
+    image:"",
     dob: "",
     teams: "",
     ok: true
   };
+
+  if (!newDriver.image) {
+    
+    errors.image = "URL image default";
+  }
 
   /*************************************/
   /****     VALIDO EL FORENAME     *****/
@@ -54,6 +59,20 @@ export const validate = (newDriver) => {
     errors.dob = "The dob only accepts dd/mm/aaaa";
   }   
 
+  /******************************************/
+  /****     VALIDO LA NACIONALIDAD      *****/
+  /******************************************/
+  if (!newDriver.nationality) { 
+    errors.ok = false;
+    errors.nationality = "The surname is required";
+  } else if (!/^[a-zA-Z]+$/u.test(newDriver.nationality)) {
+    errors.ok = false;
+    errors.nationality = "The nationality only accepts letters and apostrophes";
+  } else if (newDriver.nationality.length > 30) {
+    errors.ok = false;
+    errors.nationality = "The maximum length is 30 characters";
+  }
+
   /*************************************/
   /****     VALIDO DESCRIPTION     *****/
   /*************************************/
@@ -64,13 +83,13 @@ export const validate = (newDriver) => {
   } 
 
   /*************************************/
-  /****     VALIDO DESCRIPTION     *****/
+  /****        VALIDO TEAMS        *****/
   /*************************************/
 
   if (!newDriver.teams) { 
     errors.ok = false;
     errors.teams = "The teams is required";
   }
-
+  console.log(errors)
   return errors;
 };

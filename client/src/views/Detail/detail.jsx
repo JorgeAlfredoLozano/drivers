@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './detail.styles.css';
+import { useParams, Link } from 'react-router-dom';
+import styles from "./detail.module.css";
 const noImage = "https://i.imgur.com/Ks7SbZt.png"
 
 function Detail() {
@@ -27,17 +27,45 @@ function Detail() {
     fetchData();
   }, [id]);
 
+  const formatTeams = (teams) => {
+  
+    if (typeof teams === 'string') {
+      // Si es un string, ya está en el formato deseado
+      return teams;
+    } else if (Array.isArray(teams)) {
+      // Si es un array de objetos, convertirlo a cadena separada por comas
+      return teams.map(team => team.name).join(', ');
+    } else {
+      // Otros casos, retornar cadena vacía
+      return '';
+    }
+
+  };
+ 
   return (
-    <div>
+    <div className={styles.detailContainer}>
+      <Link to="/home" className={styles.closeButton} title="Close Card">
+         <span role="img" aria-label="Foto" className={styles.imgIcon}>&#10005;</span>
+        </Link>
       {driver && Object.keys(driver).length !== 0 ? (
         <>
-        <h5>{`${driver.id}`}</h5>
-          <h3>{`${driver.name.forename} ${driver.name.surname}`}</h3>
-          <h5>{`${driver.nationality}`}</h5>
-          <img src={driver.image.url || noImage} alt="Driver" className="image" />
-          <h5>{`${driver.description}`}</h5>
+        <h3 className={styles.id}>{`${driver.id}`}</h3>
+          {driver.name ? (
+            <h3 className={styles.nombre}>{`${driver.name.forename} ${driver.name.surname}`}</h3>
+          ) : (
+            <h3>{`${driver.forename} ${driver.surname}`}</h3>
+          )}
+          <h5 className={styles.nacionalidad}>{`${driver.nationality}`}</h5>
+          <img src={driver.image.url || noImage} alt="Driver" className={styles.imagen} />
+          <h5 className={styles.descripcion}>{`${driver.description}`}</h5>
           <h5>{`${driver.dob}`}</h5>
-          <h5 className="teams">{driver.teams}</h5>
+          {driver.teams ? (
+            <h5 className={styles.teams}>{formatTeams(driver.teams)}</h5>
+          ) : (
+            driver.Teams && (
+              <h5 className="teams">{formatTeams(driver.Teams)}</h5>
+            )
+          )}
           
         </>
       ) : (
