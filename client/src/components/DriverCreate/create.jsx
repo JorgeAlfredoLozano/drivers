@@ -195,7 +195,7 @@ useEffect(() => {
 
       {/***** COLUMNA IZQUIERDA *****/}
       <div className={styles.sidebar}>
-        <h2 style={{ marginTop: "-5px", color: "white" }}>Create New Driver {errors.ok}</h2>
+        <h2 style={{ marginTop: "5px", color: "red" }}>Create New Driver {errors.ok}</h2>
         
         {/***** IMAGEN *****/}
         <div className={styles.campoImagen}>

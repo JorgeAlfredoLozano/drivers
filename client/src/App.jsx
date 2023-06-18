@@ -4,6 +4,7 @@ import Home from "./views/Home/home";
 import Detail from "./views/Detail/detail";
 import Landing from "./views/Landing/landing";
 import Create from "./components/DriverCreate/create";
+import Update from './components/DriverUpdate/update';
 
 import "./App.css";
 
@@ -13,8 +14,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
+        <Route path="/update" component={Update} />
         <Route path="/home/:id" component={Detail} />
         <Route path="/create" component={Create} />
+        
       </Switch>
     </div>
   );

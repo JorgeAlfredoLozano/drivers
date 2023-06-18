@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "../../views/SearchBar/searchBar";
 import { NavLink } from 'react-router-dom';
 
+
 function Nav({ handleOrder, selectedOrder, selectedTeam, selectedOrigin, teams, handlerFilterTeam, resetHandler, handlerFilterOrigin, onSearch }) {
   const [resetSelectOrder, setResetSelectOrder] = useState(false);
   const [isChecked, setIsChecked] = useState(localStorage.getItem("checkedSearch") === "true"); // Usamos localStorage para mantener el estado del checkbox
@@ -41,7 +42,7 @@ function Nav({ handleOrder, selectedOrder, selectedTeam, selectedOrigin, teams, 
       </div>
 
       <button className={styles.buttonLink} onClick={handleReset} title='All filters and sorts will be initialized, showing all drivers.'>
-        Reset
+       <span>Reset</span> 
       </button>
 
       {/* SELECT DE ORDENAMIENTO */}
@@ -72,9 +73,11 @@ function Nav({ handleOrder, selectedOrder, selectedTeam, selectedOrigin, teams, 
         <option value="api">API</option>
         <option value="db">DB</option>
       </select>
+
     </div>
   );
 }
+
 
 export default Nav;
 

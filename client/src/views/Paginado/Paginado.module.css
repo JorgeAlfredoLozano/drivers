@@ -6,7 +6,7 @@
 }
 
 .paginado li {
-  margin: 0 10px;
+  margin: 0 4px;
 }
 
 .paginado button {
@@ -35,6 +35,6 @@
 }
 
 .paginado .disabled button {
-  color: #ffffff;
+  color: #916f6f;
   cursor: not-allowed;
 }

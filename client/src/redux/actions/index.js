@@ -7,6 +7,7 @@ export const FILTER_TEAMS = "FILTER_TEAMS";
 export const RESET = "RESET";
 export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const SEARCH_DRIVERS = "SEARCH_DRIVERS"
+export const SET_ERROR = "SET_ERROR"
 
 export function getDrivers() {
   return async function (dispatch) {
@@ -72,3 +73,8 @@ export function searchDrivers(name,isChecked) {
     payload: {name,isChecked}
   }
 }
+
+export const setError = (errorMessage) => ({
+  type: 'SET_ERROR',
+  payload: errorMessage,
+});

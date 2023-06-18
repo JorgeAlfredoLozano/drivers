@@ -8,7 +8,9 @@ import {
   reset,
   filterOrigin,
   searchDrivers,
+  setError
 } from "../../redux/actions";
+
 import Paginado from "../Paginado/Paginado";
 import CardList from "../../components/CardList/cardList";
 import Navbar from "../../components/Nav/nav";
@@ -18,6 +20,7 @@ function Home() {
   const dispatch = useDispatch();
   const filteredDrivers = useSelector((state) => state.filteredDrivers);
   const teams = useSelector((state) => state.teams);
+  const error = useSelector((state) => state.error);
 
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem("currentPage")) || 1
@@ -39,6 +42,12 @@ function Home() {
     localStorage.getItem("checkedSearch") === "true"
   );
 
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setError(""));
+    }, 10000);
+  }, [dispatch, error])
+  
   useEffect(() => {
     if (!filteredDrivers.length) {
       dispatch(getDrivers());
@@ -82,9 +91,11 @@ function Home() {
   };
 
   const handleSearch = (name, isChecked) => {
-    setCheckedSearch(isChecked);
-    localStorage.setItem("checkedSearch", isChecked.toString());
-    dispatch(searchDrivers(name, isChecked));
+  
+      setCheckedSearch(isChecked);
+      localStorage.setItem("checkedSearch", isChecked.toString());
+      dispatch(searchDrivers(name, isChecked));
+
   };
 
   const resetHandler = () => {
@@ -105,10 +116,12 @@ function Home() {
     setSelectedOrigin(origin);
     localStorage.setItem("selectedOrigin", origin);
     dispatch(filterOrigin(origin));
+    
   };
 
   return (
     <div className={styles.home}>
+   
       <div className={styles.navBar}>
         <Navbar
           onSearch={handleSearch}
@@ -122,8 +135,9 @@ function Home() {
           selectedOrigin={selectedOrigin}
           checkedSearch={checkedSearch}
         />
+        {error && <p className={styles.errores}>{error}</p>}
       </div>
-      
+
       <div className={styles.paginadoContainer}>
         <Paginado
           driversPerPage={driversPerPage}
@@ -131,6 +145,7 @@ function Home() {
           paginado={paginado}
           currentPage={currentPage}
         />
+        
       </div>
       <CardList drivers={filteredDrivers.slice(indexOfFirstDriver, indexLastDriver)} />
     </div>

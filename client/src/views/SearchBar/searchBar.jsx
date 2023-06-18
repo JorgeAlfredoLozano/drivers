@@ -7,7 +7,6 @@ function SearchBar({ onSearch, isChecked, handleCheckboxChange }) { // Recibe el
   const handleSearch = (event) => {
     event.preventDefault();
     const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s']+$/;
-
     if (regex.test(name)) {
       onSearch(name, isChecked ? "all" : "df");
       setName("");
@@ -39,18 +38,19 @@ function SearchBar({ onSearch, isChecked, handleCheckboxChange }) { // Recibe el
         />
       
         <button
-          disabled={true}
+          
           className={styles['buttonLink']}
           onClick={handleSearch}
         >
           <span  style={{marginLeft:"-10px"}} role="img" aria-label="search">🔍</span>
         </button>
 
-        <label className={styles.chekbox} title="If enabled it searches all pilots, and ignores currently applied filters.">
+        <label style = {{color:"white"}} className={styles.chekbox} title="If enabled it searches all pilots, and ignores currently applied filters.">
           <input
             checked={isChecked}
             onChange={handleCheckboxChange}
             type="checkbox"
+            
           />
           All Drivers
         </label>
