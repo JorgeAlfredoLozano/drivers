@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "./Paginado.module.css";
 
 export default function Paginado({ driversPerPage, allDrivers, paginado, currentPage }) {
-  const [displayPages, setDisplayPages] = useState([]);
+  const [displayPages, setDisplayPages] = useState([]); //la paginas a mostrarse 
 
+  /* CALCULOS Y MANEJO DEL PAGINADO */
   useEffect(() => {
     const totalPages = Math.ceil(allDrivers / driversPerPage);
-    const maxDisplayPages = 5;
+    const maxDisplayPages = 5; //cantidad de paginas en la nav
     let startPage = Math.max(currentPage - Math.floor(maxDisplayPages / 2), 1);
     let endPage = Math.min(startPage + maxDisplayPages - 1, totalPages);
 
@@ -19,20 +20,22 @@ export default function Paginado({ driversPerPage, allDrivers, paginado, current
       pages.push(i);
     }
 
-    setDisplayPages(pages);
+    setDisplayPages(pages); //mostrar las paginas
   }, [currentPage, allDrivers, driversPerPage]);
 
   const [inputPage, setInputPage] = useState("");
   const [errorInput, setErrorInput] = useState("");
 
+  /* HANDLER DEL INPUT PARA GO TO PAGE */
   const handleInputChange = (event) => {
     setInputPage(event.target.value);
     setErrorInput("");
   };
 
-  const handleGoToPage = () => {
+  /* HANDLER BOTON GO TO PAGE */
+  const handleGoToPage = () => { 
     const pageNumber = parseInt(inputPage, 10);
-    if (pageNumber >= 1 && pageNumber <= Math.ceil(allDrivers / driversPerPage)) {
+    if (pageNumber >= 1 && pageNumber <= Math.ceil(allDrivers / driversPerPage)) { //controlo si es valido o tiro el error
       paginado(pageNumber);
       setInputPage("");
     } else {
@@ -40,19 +43,32 @@ export default function Paginado({ driversPerPage, allDrivers, paginado, current
     }
   };
 
+  /* HANDLER PARA CAPTURAR EL ENTER */  
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleGoToPage();
     }
   };
 
+  /* HANDLER BOTON GO TO HOME EN NAV DE PAGINADO */
+  const handleHomeBtn = () => {
+    paginado(1);
+  }
+
   return (
     <nav>
       <ul className={styles.paginado} style={{ display: "flex", alignItems: "center" }}>
+
+        {/* BOTON HOME DE LA NAV */}
+        <li><button onClick={handleHomeBtn}>Home</button></li>
+        
+        {/* BOTON ANTERIOR DE LA NAV */}
         <li className={currentPage === 1 ? styles.disabled : ""}>
           <button onClick={() => paginado(currentPage - 1)} disabled={currentPage === 1}>
             {"<"}
           </button>
+
+        {/* BOTON NUMEROS DE LA NAV */}
         </li>
         {displayPages.map((number) => (
           <li
@@ -62,16 +78,22 @@ export default function Paginado({ driversPerPage, allDrivers, paginado, current
             <button onClick={() => paginado(number)}>{number}</button>
           </li>
         ))}
+
+        {/* BOTON SIGUIENTE DE LA NAV */}
         <li className={currentPage === Math.ceil(allDrivers / driversPerPage) ? styles.disabled : ""}>
           <button onClick={() => paginado(currentPage + 1)} disabled={currentPage === Math.ceil(allDrivers / driversPerPage)}>
             {">"}
           </button>
         </li>
+
+        {/* LABEL ACTUAL/ULTIMA DE LA NAV */}
         <li>
           <p className={styles.inicioFin}>
             {currentPage} / {Math.ceil(allDrivers / driversPerPage)}
           </p>
         </li>
+
+        {/* BOTON IR A UNA PAGINA DE LA NAV */}
         <li>
           <input
             type="text"
@@ -84,6 +106,7 @@ export default function Paginado({ driversPerPage, allDrivers, paginado, current
           <button style={{ cursor: "pointer" }} onClick={handleGoToPage}>
             Go
           </button>
+          
         </li>
         <p style={{ color: "red", marginTop: "5px", height: "8px", marginLeft: "10px" }} disabled={!errorInput}>
           {errorInput && errorInput}

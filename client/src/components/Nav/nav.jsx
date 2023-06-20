@@ -12,26 +12,26 @@ function Nav({ handleOrder, selectedOrder, selectedTeam, selectedOrigin, teams, 
     setResetSelectOrder(false);
   }, [resetHandler]);
 
+  /* HANDLER PARA EL BOTON DE RESET DE FILTROS */
   const handleReset = () => {
-    setIsChecked(false); // Reiniciamos el estado del checkbox
-    localStorage.setItem("checkedSearch", false); // Actualizamos el valor en localStorage
+    setIsChecked(false); // Reinicio el estado del checkbox
+    localStorage.setItem("checkedSearch", false); // Actualizo el valor en localStorage
     setResetSelectOrder(true);
     resetHandler();
   };
 
+  /* HANDLER PARA EL CHECKBOX DE ALL DRIVERS EN EL SEARCH */
   const handleCheckboxChange = () => {
     const updatedValue = !isChecked;
     setIsChecked(updatedValue);
     localStorage.setItem("checkedSearch", updatedValue); // Actualizamos el valor en localStorage
   };
 
-  const handleNewDriver = () => {
-
-  }
 
   return (
     <div className={styles.container} >
-      
+
+      {/* BOTON CREAR NUEVO DRIVER */}
       <NavLink to="/create" className={styles.buttonNew}>
         New Driver
       </NavLink>
@@ -41,6 +41,7 @@ function Nav({ handleOrder, selectedOrder, selectedTeam, selectedOrigin, teams, 
         <SearchBar onSearch={onSearch} isChecked={isChecked} handleCheckboxChange={handleCheckboxChange} /> {/* Pasamos el estado del checkbox y la función de cambio como props */}
       </div>
 
+      {/* BOTON DE RESET DE FILTROS */}
       <button className={styles.buttonLink} onClick={handleReset} title='All filters and sorts will be initialized, showing all drivers.'>
        <span>Reset</span> 
       </button>

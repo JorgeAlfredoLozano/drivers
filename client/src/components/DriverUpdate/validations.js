@@ -90,6 +90,6 @@ export const validate = (newDriver) => {
     errors.ok = false;
     errors.teams = "The teams is required";
   }
-  console.log(errors)
+
   return errors;
 };

@@ -1,5 +1,5 @@
 import styles from "./cards.module.css";
-
+const noImage = "https://i.imgur.com/Ks7SbZt.png"
 import { NavLink } from "react-router-dom";
 
 function Cards({ driver }) {
@@ -7,14 +7,11 @@ function Cards({ driver }) {
   
   const formatTeams = (teams) => {
     if (typeof teams === 'string') {
-      // Si es un string, ya está en el formato deseado
-      return teams;
+        return teams;
     } else if (Array.isArray(driver.Teams)) {
-      // Si es un array de objetos, convertirlo a cadena separada por comas
-      return driver.Teams.map(team => team.name).join(', ');
+        return driver.Teams.map(team => team.name).join(', ');
     } else {
-      // Otros casos, retornar cadena vacía
-      return '';
+        return '';
     }
 
   };
@@ -25,7 +22,7 @@ function Cards({ driver }) {
         style={{ textDecoration: "none"}}
       >
         <h3 className={styles.nombre}>{`${forename} ${surname}`}</h3>
-        <img src={image} alt="Driver" className={styles.image} />
+        <img src={driver.image || noImage} alt="Driver" className={styles.image} />
         <div>
         <h5 className={styles.teams}>{formatTeams(teams)}</h5>
         <h5 className={styles.fecha}>{dob}</h5>

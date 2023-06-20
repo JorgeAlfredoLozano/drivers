@@ -39,6 +39,10 @@
     margin-right: 15px;
     border-radius: 25%;
   }
+  .updateButton[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
   .nombre {
     margin-top: -15px;
     max-width: fit-content;

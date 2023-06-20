@@ -45,19 +45,19 @@ function Create() {
   const handlerAddTeam = (event) => {
     event.preventDefault();
     const team = teamInputRef.current.value || customTeam;
-    
-    if (team && !newDriver.teams.includes(team)) {
+     if (team && !newDriver.teams.includes(team)) {
       setSelectedTeam([...selectedTeam, team]);
       setCustomTeam("");
       teamInputRef.current.value = "";
     }
+
   };
 
   /*****   VALIDACION TEXTAREA DE TEAMS   *****/
   const handleTeamChange = (event) => {
     const selectedDriver = event.target.value;
     const isDuplicate = newDriver.teams.includes(selectedDriver);
-
+    
     if (!isDuplicate) {
       setNewDriver((prevState) => ({
         ...prevState,
@@ -65,22 +65,19 @@ function Create() {
       }));
 
       setSelectedTeam((prevState) => [...prevState, selectedDriver]);
-      
-      
     }
-    
   };
 
-useEffect(() => {
-  if (selectedTeam) {
-    setNewDriver((prevState) => ({
-      ...prevState,
-      [teams]: selectedTeam
-    }))
-    validate(newDriver)
-  }
-
-},[selectedTeam])
+  /*****   CONTROLO LOS CAMBIOS DE selectedTeam   *****/
+  useEffect(() => {
+    if (selectedTeam) {
+      setNewDriver((prevState) => ({
+        ...prevState,
+        [teams]: selectedTeam
+      }))
+      validate(newDriver)
+    }
+  },[selectedTeam])
 
   /*****   INPUT TEAM PERSONALIZADO (estado)   *****/
   const handleCustomTeamChange = (event) => {
@@ -109,10 +106,7 @@ useEffect(() => {
       ...newDriver,
       [name]: value
     });
-    
     setErrors(updatedErrors);
-
-   
   }
  
   /*****   VALIDO LA CARGA DE IMAGEN   *****/
@@ -142,8 +136,9 @@ useEffect(() => {
     return 
   }
   
+  /*****   HANDLE BOTON SAVE   *****/
   const handleSubmit = (e) => {
-    e.preventDefault();
+    
     const errors = validate(newDriver); //Valido antes de grabar
 
     if (drivers.some(driver => driver.forename.toLowerCase() === newDriver.forename.toLowerCase() && driver.surname.toLowerCase() === newDriver.surname.toLowerCase())){
@@ -319,7 +314,7 @@ useEffect(() => {
                 
               )}
           </div>
-
+          
           {/***** BOTON GRABAR & CANCELAR *****/}
           <div className={styles.formField}>
               <div style={{ display: 'inline-block' }}>
@@ -327,7 +322,9 @@ useEffect(() => {
                       type="submit"
                       style={{ marginTop: '10px', marginLeft: '10px' }}
                       onClick={handleSubmit}
-                      disabled={!errors.ok}
+                      disabled={!errors.ok || selectedTeam.length === 0}
+
+
                       className={styles.submitButton}
                   >
                       Save

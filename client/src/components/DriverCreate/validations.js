@@ -10,7 +10,6 @@ export const validate = (newDriver) => {
     nationality: "",
     image:"",
     dob: "",
-    teams: "",
     ok: true
   };
 
@@ -82,14 +81,6 @@ export const validate = (newDriver) => {
     errors.description = "The description is required";
   } 
 
-  /*************************************/
-  /****        VALIDO TEAMS        *****/
-  /*************************************/
 
-  if (!newDriver.teams) { 
-    errors.ok = false;
-    errors.teams = "The teams is required";
-  }
-  console.log(errors)
   return errors;
 };

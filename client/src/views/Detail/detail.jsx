@@ -1,13 +1,20 @@
 import axios from 'axios';
+import { getDrivers } from '../../redux/actions/index';
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import styles from "./detail.module.css";
+import { useDispatch } from 'react-redux';
+
 const noImage = "https://i.imgur.com/Ks7SbZt.png"
 
+
 function Detail() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
   const [driver, setDriver] = useState({});
 
+  /* TRAIGO LOS DATOS DEL DRIVER CON EL ID */
   useEffect(() => {
     let formattedData={}
     const fetchData = async () => {
@@ -33,7 +40,7 @@ function Detail() {
         }
         
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
     
@@ -49,17 +56,21 @@ function Detail() {
       return '';
     }
   };
+
+  /* HANDLER PARA ELIMINAR UN DRIVER CREADO POR DB */
   const deleteHandler = async () => {
-    try {
-      const response = await axios.delete(`http://localhost:3001/drivers/${id}`);
-      history.push("/home");
-    } catch (error) {
+    const response = await axios.delete(`http://localhost:3001/drivers/${id}`);
+    if (response.status === 200) {
+      await dispatch(getDrivers());
       
+      alert("the driver was removed")
+      history.push("/home");
     }
   }
 
   return (
     <div className={styles.detailContainer}>
+      {/* BOTON ELIMINAR SI VIENE DE LA DB */}
       {driver.createInDb ? (
       <button className={styles.deleteButton} onClick={deleteHandler}>
           <span title='Delete the Driver from the database' role="img" aria-label="Foto" className={styles.imgIcon}>🗑️</span>
@@ -69,13 +80,20 @@ function Detail() {
           <span title='Cannot delete, belongs to API' role="img" aria-label="Foto" className={styles.imgIcon}>🗑️</span>
         </button>
       )}
-  
-      <Link to="/home/update" className={styles.updateButton} title="Update Driver">
+
+      {/* BOTON PARA ACTUALIZAR SI VIENE DE LA DB */}
+      {driver.createInDb ?(<Link to={`/update/${driver.id}`} className={styles.updateButton} title="Update Driver">
          <span role="img" aria-label="Foto" className={styles.imgIcon}>↻</span>
-      </Link>
+      </Link>):(<button className={styles.updateButton}  title='update info of driver' disabled>
+         <span role="img" aria-label="Foto" className={styles.imgIcon} title='update info of driver' disabled>↻</span>
+      </button>)}
+      
+      {/*BOTON PARA CERRAR EL DETAIL */}
       <Link to="/home" className={styles.closeButton} title="Close Card">
          <span role="img" aria-label="Foto" className={styles.imgIcon}>&#10005;</span>
       </Link>
+      
+      {/* DETALLES DEL DRIVER */}
       {driver && Object.keys(driver).length !== 0 ? (
         <>
           <h3 className={styles.id}>{`${driver.id}`}</h3>
@@ -108,7 +126,7 @@ function Detail() {
           )}
         </>
       ) : (
-        <p>No se encontró el conductor</p>
+        <p>Loading Driver...</p>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { GET_DRIVERS, ORDER, GET_TEAMS, FILTER_TEAMS, RESET, FILTER_ORIGIN, SEARCH_DRIVERS, SET_ERROR, setError } from '../actions'
+import { GET_DRIVERS, ORDER, GET_TEAMS, FILTER_TEAMS, RESET, FILTER_ORIGIN, SEARCH_DRIVERS, SET_ERROR, setError, getTeams } from '../actions'
 
 const initialState = {
   allDrivers: [],
@@ -68,6 +68,7 @@ const reducer = (state = initialState, action) => {
 
     //**** RESET (Inicializa el estado de filtros/ordenamiento) ****/
     case RESET:
+       
       return {
         ...state,
         filteredDrivers: [...state.allDrivers]
@@ -115,7 +116,7 @@ const reducer = (state = initialState, action) => {
           error: 'No se encontraron resultados para la búsqueda.',
         };
       }
-      
+      console.log(searchResult)
       return {
         ...state,
         filteredDrivers: searchResult,
